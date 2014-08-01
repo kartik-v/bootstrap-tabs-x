@@ -1,0 +1,39 @@
+{
+    "name": "bootstrap-tabs-x",
+    "version": "1.0.0",
+    "homepage": "https://github.com/kartik-v/bootstrap-tabs-x",
+    "authors": [
+        "Kartik Visweswaran <kartikv2@gmail.com>"
+    ],
+    "description": "Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
+    "main": [
+        "./css/bootstrap-tabs-x.min.css",
+        "./js/bootstrap-tabs-x.min.js"
+    ],
+    "keywords": [
+        "bootstrap",
+        "tabs",
+        "extended", 
+        "pills", 
+        "below",
+        "left",
+        "right",
+        "above",
+        "center",
+        "jquery"
+    ],
+    "dependencies": {
+        "jquery": ">= 1.9.0",
+        "bootstrap": ">= 3.0.0"
+    },
+    "license": "BSD-3",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "composer.json",
+        "examples",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}

@@ -1,0 +1,255 @@
+/*!
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
+ * @version 1.0.0
+ *
+ * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs in 
+ * multiple ways, add borders, rotated titles, and more.
+ *
+ * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
+ * For more Yii related demos visit http://demos.krajee.com
+ */
+.align-center .nav-tabs > li, .align-center .nav-pills > li,
+.align-right .nav-tabs > li, .align-right .nav-pills > li {
+    float: none;
+    display: inline-block;
+    *display: inline; /* ie7 fix */
+    zoom: 1; /* hasLayout ie7 trigger */
+}
+
+.align-center .nav-tabs, .align-center .nav-pills {
+    text-align: center;
+}
+
+.align-right .nav-tabs, .align-right .nav-pills {
+    text-align: right;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+    display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+    display: block;
+}
+
+.tabs-above > .nav-tabs > .active > a,
+.tabs-above > .nav-tabs > .active > a:hover,
+.tabs-above > .nav-tabs > .active > a:focus {
+    border-color: #ddd #ddd #fff #ddd;
+}
+
+.tabs-below > .nav-tabs,
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
+    border-bottom: 0;
+}
+
+.tabs-below > .nav-tabs {
+    border-top: 1px solid #ddd;
+}
+
+.tabs-below > .nav-tabs > li {
+    margin-top: -1px;
+    margin-bottom: 0;
+}
+
+.tabs-below > .nav-tabs > li > a {
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+.tabs-below > .nav-tabs > li > a:hover,
+.tabs-below > .nav-tabs > li > a:focus {
+    border-top-color: #ddd;
+    border-bottom-color: transparent;
+}
+
+.tabs-below > .nav-tabs > .active > a,
+.tabs-below > .nav-tabs > .active > a:hover,
+.tabs-below > .nav-tabs > .active > a:focus {
+    border-color: transparent #ddd #ddd #ddd;
+}
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+    float: none;
+}
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+    min-width: 74px;
+    margin-right: 0;
+    margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+    float: left;
+    margin-right: 19px;
+    border-right: 1px solid #ddd;
+}
+
+.tabs-left > .nav-tabs > li > a {
+    margin-right: -1px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+    border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+    border-color: #ddd transparent #ddd #ddd;
+    *border-right-color: #ffffff;
+}
+
+.tabs-right > .nav-tabs {
+    float: right;
+    margin-left: 19px;
+    border-left: 1px solid #ddd;
+}
+
+.tabs-right > .nav-tabs > li > a {
+    margin-left: -1px;
+    -webkit-border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.tabs-right > .nav-tabs > li > a:hover,
+.tabs-right > .nav-tabs > li > a:focus {
+    border-color: #eeeeee #eeeeee #eeeeee #dddddd;
+}
+
+.tabs-right > .nav-tabs .active > a,
+.tabs-right > .nav-tabs .active > a:hover,
+.tabs-right > .nav-tabs .active > a:focus {
+    border-color: #ddd #ddd #ddd transparent;
+    *border-left-color: #ffffff;
+}
+
+.sideways .nav-tabs {
+    margin-top: 51px;
+    border: none !important;
+    position: relative;
+}
+
+.sideways .nav-tabs > li {
+    height: 20px;
+    width: 120px;
+    margin-bottom: 100px;
+}
+
+.sideways .nav-tabs > li > a {
+    border-bottom: 1px solid #ddd;
+    border-right-color: transparent;
+    text-align: center;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.tabs-left.sideways .nav-tabs {
+    left: -50px;
+    margin-right: -50px;
+}
+
+.tabs-right.sideways .nav-tabs {
+    right: -50px;
+    margin-left: -50px;
+}
+
+.tabs-right.sideways .nav-tabs > li.active > a,
+.tabs-right.sideways .nav-tabs > li.active > a:hover,
+.tabs-right.sideways .nav-tabs > li.active > a:focus {
+    border-radius: 4px 4px 0px 0px;
+    border-color: #ddd;
+    border-bottom: none !important;
+}
+
+.tabs-left.sideways .nav-tabs > li.active > a,
+.tabs-left.sideways .nav-tabs > li.active > a:hover,
+.tabs-left.sideways .nav-tabs > li.active > a:focus {
+    border-radius: 4px 4px 0px 0px;
+    border-color: #ddd;
+    border-bottom: none !important;
+}
+
+.tabs-right.sideways .nav-tabs > li {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.tabs-left.sideways .nav-tabs > li {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+.sideways .nav-tabs > li > a {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tabs-left .tab-pane {
+    margin-left: 70px;
+}
+
+.tabs-right .tab-pane {
+    margin-right: 70px;
+}
+
+.tab-content {
+    padding: 10px;
+}
+
+.tabs-above .tab-bordered {
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}
+
+.tabs-below .tab-bordered {
+    border: 1px solid #ddd;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+}
+
+.tabs-left .nav-tabs, .tabs-right .nav-tabs, .tabs-left .tab-content, .tabs-right .tab-content {
+    height: 100%;
+}
+
+.tabs-left .tab-bordered {
+    border: 1px solid #ddd;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+}
+
+.tabs-left .tab-bordered .tab-pane, .tabs-right .tab-bordered .tab-pane {
+    margin-left: 0;
+}
+
+.tabs-right .tab-bordered {
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.tabs-left.sideways .tab-bordered {
+    margin-left: 41px;
+}
+
+.tabs-right.sideways .tab-bordered {
+    margin-right: 41px;
+}
