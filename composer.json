@@ -1,9 +1,9 @@
 {
-    "name": "kartik-v/bootstrap-popover-x",
+    "name": "kartik-v/bootstrap-tabs-x",
     "description": "Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more.",
-    "keywords": ["bootstrap", "popover", "popover-x", "extended", "modal", "modal-popover", "jquery"],
-    "homepage": "https://github.com/kartik-v/bootstrap-popover-x",
-    "license": "BSD 3-Clause",
+    "keywords": ["bootstrap", "tabs", "tabs-x", "extended", "modal", "modal-tabs", "jquery"],
+    "homepage": "https://github.com/kartik-v/bootstrap-tabs-x",
+    "license": "BSD 3-Clause",      
     "authors": [
         {
             "name": "Kartik Visweswaran",
