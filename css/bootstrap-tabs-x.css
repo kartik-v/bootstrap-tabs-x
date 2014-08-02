@@ -21,11 +21,11 @@
 }
 
 .tab-align-center .nav-tabs, .tab-align-center .nav-pills {
-    text-tab-align: center;
+    text-align: center;
 }
 
 .tab-align-right .nav-tabs, .tab-align-right .nav-pills {
-    text-tab-align: right;
+    text-align: right;
 }
 
 .tab-align-right .nav-tabs li:last-child {
@@ -176,7 +176,7 @@
 .tab-sideways .nav-tabs > li > a {
     border-bottom: 1px solid #ddd;
     border-right-color: transparent;
-    text-tab-align: center;
+    text-align: center;
     border-radius: 4px 4px 0px 0px;
 }
 
