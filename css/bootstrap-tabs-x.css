@@ -2,26 +2,54 @@
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
  * @version 1.0.0
  *
- * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs in 
+ * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to tab-align tabs in 
  * multiple ways, add borders, rotated titles, and more.
  *
  * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
  * For more Yii related demos visit http://demos.krajee.com
  */
-.align-center .nav-tabs > li, .align-center .nav-pills > li,
-.align-right .nav-tabs > li, .align-right .nav-pills > li {
+.tab-align-center .nav-tabs > li, .tab-align-center .nav-pills > li,
+.tab-align-right .nav-tabs > li, .tab-align-right .nav-pills > li {
     float: none;
     display: inline-block;
     *display: inline; /* ie7 fix */
     zoom: 1; /* hasLayout ie7 trigger */
 }
 
-.align-center .nav-tabs, .align-center .nav-pills {
-    text-align: center;
+.tabs-left .nav-tabs, .tabs-right .nav-tabs, .tabs-left .tab-content, .tabs-right .tab-content {
+    height: 100%;
 }
 
-.align-right .nav-tabs, .align-right .nav-pills {
-    text-align: right;
+.tab-align-center .nav-tabs, .tab-align-center .nav-pills {
+    text-tab-align: center;
+}
+
+.tab-align-right .nav-tabs, .tab-align-right .nav-pills {
+    text-tab-align: right;
+}
+
+.tab-align-right .nav-tabs li:last-child {
+    margin-right: -2px;
+}
+
+.tab-height-xs .tab-content {
+    height: 135px!important;
+    overflow: auto;
+}
+
+.tab-height-sm .tab-content {
+    height: 195px!important;
+    overflow: auto;
+}
+
+.tab-height-md .tab-content {
+    height: 280px!important;
+    overflow: auto;
+}
+
+.tab-height-lg .tab-content {
+    height: 400px!important;
+    overflow: auto;
 }
 
 .tab-content > .tab-pane,
@@ -80,7 +108,6 @@
 
 .tabs-left > .nav-tabs > li > a,
 .tabs-right > .nav-tabs > li > a {
-    min-width: 74px;
     margin-right: 0;
     margin-bottom: 3px;
 }
@@ -112,7 +139,6 @@
 
 .tabs-right > .nav-tabs {
     float: right;
-    margin-left: 19px;
     border-left: 1px solid #ddd;
 }
 
@@ -135,52 +161,56 @@
     *border-left-color: #ffffff;
 }
 
-.sideways .nav-tabs {
+.tab-sideways .nav-tabs {
     margin-top: 51px;
     border: none !important;
     position: relative;
 }
 
-.sideways .nav-tabs > li {
+.tab-sideways .nav-tabs > li {
     height: 20px;
     width: 120px;
     margin-bottom: 100px;
 }
 
-.sideways .nav-tabs > li > a {
+.tab-sideways .nav-tabs > li > a {
     border-bottom: 1px solid #ddd;
     border-right-color: transparent;
-    text-align: center;
+    text-tab-align: center;
     border-radius: 4px 4px 0px 0px;
 }
 
-.tabs-left.sideways .nav-tabs {
+.tab-sideways .nav-tabs .dropdown-menu {
+    margin-top: 20px;
+}
+
+.tabs-left.tab-sideways .nav-tabs {
     left: -50px;
     margin-right: -50px;
 }
 
-.tabs-right.sideways .nav-tabs {
+.tabs-right.tab-sideways .nav-tabs {
     right: -50px;
     margin-left: -50px;
 }
 
-.tabs-right.sideways .nav-tabs > li.active > a,
-.tabs-right.sideways .nav-tabs > li.active > a:hover,
-.tabs-right.sideways .nav-tabs > li.active > a:focus {
+.tabs-right.tab-sideways .nav-tabs > li.active > a,
+.tabs-right.tab-sideways .nav-tabs > li.active > a:hover,
+.tabs-right.tab-sideways .nav-tabs > li.active > a:focus {
     border-radius: 4px 4px 0px 0px;
     border-color: #ddd;
     border-bottom: none !important;
 }
 
-.tabs-left.sideways .nav-tabs > li.active > a,
-.tabs-left.sideways .nav-tabs > li.active > a:hover,
-.tabs-left.sideways .nav-tabs > li.active > a:focus {
+.tabs-left.tab-sideways .nav-tabs > li.active > a,
+.tabs-left.tab-sideways .nav-tabs > li.active > a:hover,
+.tabs-left.tab-sideways .nav-tabs > li.active > a:focus {
     border-radius: 4px 4px 0px 0px;
     border-color: #ddd;
     border-bottom: none !important;
 }
 
-.tabs-right.sideways .nav-tabs > li {
+.tabs-right.tab-sideways .nav-tabs > li {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
@@ -188,7 +218,7 @@
     transform: rotate(90deg);
 }
 
-.tabs-left.sideways .nav-tabs > li {
+.tabs-left.tab-sideways .nav-tabs > li {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
@@ -196,31 +226,23 @@
     transform: rotate(-90deg);
 }
 
-.sideways .nav-tabs > li > a {
+.tab-sideways .nav-tabs > li > a {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.tabs-left .tab-pane {
-    margin-left: 70px;
-}
-
-.tabs-right .tab-pane {
-    margin-right: 70px;
 }
 
 .tab-content {
     padding: 10px;
 }
 
-.tabs-above .tab-bordered {
+.tabs-above.tab-bordered .tab-content {
     border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 4px 4px;
 }
 
-.tabs-below .tab-bordered {
+.tabs-below.tab-bordered .tab-content {
     border: 1px solid #ddd;
     border-bottom: none;
     border-radius: 4px 4px 0 0;
@@ -230,26 +252,26 @@
     height: 100%;
 }
 
-.tabs-left .tab-bordered {
+.tabs-left.tab-bordered .tab-content {
     border: 1px solid #ddd;
     border-left: none;
     border-radius: 0 4px 4px 0;
 }
 
-.tabs-left .tab-bordered .tab-pane, .tabs-right .tab-bordered .tab-pane {
+.tabs-left.tab-bordered .tab-content .tab-pane, .tabs-right.tab-bordered .tab-content .tab-pane {
     margin-left: 0;
 }
 
-.tabs-right .tab-bordered {
+.tabs-right.tab-bordered .tab-content {
     border: 1px solid #ddd;
     border-right: none;
     border-radius: 4px 0 0 4px;
 }
 
-.tabs-left.sideways .tab-bordered {
+.tabs-left.tab-sideways.tab-bordered .tab-content {
     margin-left: 41px;
 }
 
-.tabs-right.sideways .tab-bordered {
+.tabs-right.tab-sidewaysb.tab-bordered .tab-content {
     margin-right: 41px;
 }

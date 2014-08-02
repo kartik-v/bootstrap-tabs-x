@@ -12,50 +12,59 @@ var isEmpty = function (value, trim) {
     return value === null || value === undefined || value == []
         || value === '' || trim && $.trim(value) === '';
 };
-function kvExtendTabs($el, reduce) {
-    var $parent = $el.closest('.tabbable'),
-        chk2 = ($parent.hasClass('tabs-left') || $parent.hasClass('tabs-right')),
-        chk1 = chk2 && $parent.hasClass('sideways');
-    if (chk1) {
-        var $tabs = $parent.find('.nav-tabs'), $pane = $parent.find('.tab-pane.active'),
-            $content = $parent.find('.tab-content'),
-            tabHeight = $tabs.outerHeight(), paneHeight = $pane.outerHeight(),
-            h = tabHeight > paneHeight ? tabHeight : paneHeight + 20;
-        if ($el.is(':last-child') && tabHeight > paneHeight && reduce) {
+var kvFormatTabs = function ($el, initialize) {
+    var $parent = $el.closest('.tabs-x'),
+        isVertical = ($parent.hasClass('tabs-left') || $parent.hasClass('tabs-right')),
+        isVerticalSide = isVertical && $parent.hasClass('tab-sideways'), $tabs = $parent.find('.nav-tabs'),
+        $pane = $parent.find('.tab-pane.active'), $content = $parent.find('.tab-content'),
+        tabHeight = $tabs.outerHeight(), paneHeight = $pane.outerHeight(), tabWidth = $tabs.outerWidth(),
+        h = tabHeight > paneHeight ? tabHeight : paneHeight + 20, contentHeight = $content.outerHeight(),
+        isFixed = $parent.is('[class^="tab-height-"]');
+
+    if (isVerticalSide) {
+        if (isFixed) {
+            if (tabHeight < contentHeight) {
+                $tabs.height(contentHeight);
+            }
+            return;
+        }
+        if ($el.is(':last-child') && tabHeight > paneHeight && initialize) {
             $parent.height(h + 1);
         } else {
             $parent.height(h);
         }
-    } else if (chk2) {
-        var $tabs = $parent.find('.nav-tabs'), $pane = $parent.find('.tab-pane.active'),
-            $content = $parent.find('.tab-content'),
-            tabHeight = $tabs.outerHeight(), paneHeight = $pane.outerHeight(),
-            tabWidth = $tabs.outerWidth(),
-            h = tabHeight > paneHeight ? tabHeight : paneHeight + 20;
-        if ($parent.hasClass('tabs-left') && $content.hasClass('tab-bordered')) {
-            $content.attr('style', 'margin-left: ' + tabWidth + 'px');
-        } else if ($parent.hasClass('tabs-right') && $content.hasClass('tab-bordered')) {
-            $content.attr('style', 'margin-right: ' + tabWidth + 'px');
+    } else if (isVertical) {
+        h = tabHeight > paneHeight ? tabHeight : paneHeight + 32;
+        if ($parent.hasClass('tabs-left')) {
+            $content.css('margin-left', tabWidth + 'px');
+        } else if ($parent.hasClass('tabs-right')) {
+            $content.css('margin-right', tabWidth + 'px');
         }
-        if ($el.is(':last-child') && tabHeight > paneHeight && reduce) {
-            $parent.height(h - 2);
-        } else {
-            $parent.height(h);
+        if (isFixed) {
+            if (tabHeight < contentHeight) {
+                $tabs.height(contentHeight);
+            }
+            return;
         }
+        $parent.css('min-height', h + 'px');
+        var contentHeight = $content.outerHeight(), parentHeight = $parent.outerHeight();
+        h = contentHeight < h ? contentHeight : parentHeight;
+        $tabs.css('min-height', h + 'px');
     }
 }
-$(document).on('ready', function(){
-    $('.nav-tabs [data-toggle="tab"]').on('shown.bs.tab', function(ev) {
-        kvExtendTabs($(this), false);
+$(document).on('ready', function () {
+    $('.nav-tabs [data-toggle="tab"]').on('shown.bs.tab', function (ev) {
+        kvFormatTabs($(this), false);
     });
-    $('.nav-tabs li.active [data-toggle="tab"]').each(function(ev) {
-        kvExtendTabs($(this), true);
+    $('.nav-tabs li.active [data-toggle="tab"]').each(function (ev) {
+        kvFormatTabs($(this), true);
     });
-    $('.nav-tabs li  [data-toggle="tab"]').each(function(ev) {
-        var  $el = $(this), linkTxt = $el.text(), $parent = $el.closest('.tabbable'),
-            chk = ($parent.hasClass('tabs-left') || $parent.hasClass('tabs-right')) && $parent.hasClass('sideways');
+    $('.nav-tabs li a').each(function (ev) {
+        var $el = $(this), linkTxt = $el.text(), $parent = $el.closest('.tabs-x'),
+            isVertical = ($parent.hasClass('tabs-left') || $parent.hasClass('tabs-right')) && $parent.hasClass('tab-sideways'),
+            maxLen = isEmpty($el.data('maxLength')) ? 9 : $el.data('maxLength');
 
-        if (chk && linkTxt.length > 12 && isEmpty($el.attr('title'))) {
+        if (isVertical && linkTxt.length > maxLen && isEmpty($el.attr('title'))) {
             $el.attr('title', linkTxt);
         }
     });

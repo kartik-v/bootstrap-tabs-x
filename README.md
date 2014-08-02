@@ -11,7 +11,10 @@ The plugin offers these enhanced features:
 - Supports various tab opening directions: `above` (default), `below`, `right`, and `left`.
 - Allows you to box the tab content in a new `bordered` style. This can work with any of the tab directions above.
 - Allows you to align the entire tab content to the `left` (default), `center`, or `right` of the parent container/page.
-- Allows a rotated sideways tab header orientation for the `right` and `left` tab directions.
+- Automatically align & format heights and widths for bordered tabs for `right` and `left` positions.
+- Allows a rotated `sideways` tab header orientation for the `right` and `left` tab directions.
+- Do not wrap tab header labels for `sideways` orientation for long label text. For longer lengths, the text overflow will be set to ellipsis and 
+  the full label will be displayed as a title on hover.
 
 ## Demo
 
@@ -66,18 +69,18 @@ the plugin to work with default settings.
 
 ### Markup
 
-You just need to setup the markup for the extended bootstrap tabs to work now.
+You just need to setup the markup for the extended bootstrap tabs to work now. Refer documentation for details.
 
 ```html
 <legend>Tabs Above Centered (Bordered)</legend>
 <!-- tabs -->
-<div class="tabbable align-center tabs-above ">
+<div class="tabs-x align-center tabs-above tab-bordered">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#one2" data-toggle="tab">One</a></li>
         <li><a href="#two2" data-toggle="tab">Two</a></li>
         <li><a href="#three2" data-toggle="tab">Three</a></li>
     </ul>
-    <div class="tab-content tab-bordered">
+    <div class="tab-content">
         <div class="tab-pane active" id="one2">Lorem ipsum dolor sit amet, charetra varius quam sit amet
             vulputate. Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero.
         </div>
@@ -95,6 +98,80 @@ You just need to setup the markup for the extended bootstrap tabs to work now.
 
 The javascript methods and events available in the core bootstrap tabs plugin will be available here as well.
 
+## Documentation
+
+The entire tabs behavior can be controlled through HTML markup. The various markup options available for the `bootstrap-tabs-x` plugin are mentioned below:
+
+### Tabs X Container
+
+This is the most important part of setting up your extended tabs behavior. You must wrap the default bootstrap tabs markup within a div container with a `tabs-x` class.
+In addition, you can add positioning classes (e.g. `tabs-above`) and alignment classes (e.g. `align-center` ) to this container. You can also add the `sideways` orientation 
+class to rotate the tab headers sideways for the `tabs-right` and `tabs-left` positions.
+
+```html
+<!-- tabs-x container -->
+<div class="tabs-x align-{center|right} tabs-{above|below|right|left} {tab-sideways} {tab-bordered} {tab-height-(xs|sm|md|lg}">
+    <ul class="nav nav-tabs">
+        ...
+    </ul>
+    <div class="tab-content">
+        ...
+    </div>
+</div>
+```
+
+### Tabs X Positions (Directions)
+
+You can set four different positions for your tabs - by adding one of the following CSS classes to your tabs container.
+
+- `tabs-above`: The default tabs position - the navigation tabs will be placed above the tab content.
+- `tabs-below`: The navigation tabs will be placed below the tab content.
+- `tabs-left`: The navigation tabs will be placed left of the tab content.
+- `tabs-right`: The navigation tabs will be placed right of the tab content.
+
+### Tabs X Alignment
+
+By default the tabs are aligned/floated to the `left` of the parent container. In addition, you can set the following alignment options, by adding 
+one of the following CSS classes to your tabs container.
+
+- `tab-align-center`: Align the entire tabs widget to the `center` of your parent container.
+- `tab-align-right`: Align the entire tabs widget to the `right` of your parent container.
+
+> NOTE: These alignments makes sense for working only with the `tabs-above` and `tabs-below` positions. It is recommended not to use them with the `tabs-right` and `tabs-left` positions.
+
+### Tabs X Bordered
+
+You can add the `tab-bordered` class to the tabs container to make it boxed within a border. The border radius and box format will automatically 
+be adjusted based on your tab position.
+
+### Tabs X Fixed Height Sizes
+
+By default each of the tab pane heights are automatically calculated. When using the `tab-bordered` style, you may wish to set fixed heights, so the tab
+widget dimensions are consistent for all tabs. For this you can add one of the following fixed height classes to your tabs container:
+
+- `tab-height-xs`: Maintains a fixed tab pane height to an **extra small** height specification of `135 px`, and overflows the extra content to scrollable.
+- `tab-height-sm`: Maintains a fixed tab pane height to a **small** height specification of `195 px`, and overflows the extra content to scrollable.
+- `tab-height-sm`: Maintains a fixed tab pane height to a **medium** height specification of `280 px`, and overflows the extra content to scrollable.
+- `tab-height-lg`: Maintains a fixed tab pane height to a **large** height specification of `400 px`, and overflows the extra content to scrollable.
+
+> NOTE: You can add your own custom classes (names beginning with `tab-height-`) and the plugin will automatically format the vertical tabs borders 
+ (`tabs-left` and `tabs-right`) based on this. Note in this case your custom class must modify the `tab-content` height like shown below:
+
+```css
+/* custom fixed height class */
+.tab-height-500 .tab-content {
+    height: 500px!important;
+    overflow: auto;
+}
+```
+
+### Tabs X Sideways Orientation
+
+For the `tabs-left` and `tabs-right` positions, you can rotate the tab header labels to show it `sideways`. For this you can add the `tab-sideways` class
+to your tabs container. In this case the tab header label width is fixed. Any long label text overflowing will not be wrapped and shown along with an ellipsis.
+The plugin will automatically set the title attribute to show the complete label on hovering the tab header.
+
+> NOTE: The sideways orientation makes sense for working only with the `tabs-left` and `tabs-right` positions. It is recommended not to use them with the `tabs-above` and `tabs-below` positions.
 
 ## License
 
