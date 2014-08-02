@@ -13,8 +13,7 @@ The plugin offers these enhanced features:
 - Allows you to align the entire tab content to the `left` (default), `center`, or `right` of the parent container/page.
 - Automatically align & format heights and widths for bordered tabs for `right` and `left` positions.
 - Allows a rotated `sideways` tab header orientation for the `right` and `left` tab directions.
-- Do not wrap tab header labels for `sideways` orientation for long label text. For longer lengths, the text overflow will be set to ellipsis and 
-  the full label will be displayed as a title on hover.
+- Auto detect overflowing header labels for `sideways` orientation (with ellipsis styling) and display full label as a title on hover.
 
 ## Demo
 
