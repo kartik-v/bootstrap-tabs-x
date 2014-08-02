@@ -2,7 +2,7 @@ bootstrap-tabs-x
 =====================
 
 Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more. This plugin includes various CSS3 styling enhancements
-and some tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com/javascript/#tabs).
+and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com/javascript/#tabs).
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
 
