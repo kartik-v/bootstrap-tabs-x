@@ -48,8 +48,12 @@ var kvFormatTabs = function ($el, initialize) {
         }
         $parent.css('min-height', h + 'px');
         var contentHeight = $content.outerHeight(), parentHeight = $parent.outerHeight();
-        h = contentHeight < h ? contentHeight : parentHeight;
-        $tabs.css('min-height', h + 'px');
+        if (contentHeight > tabHeight) {
+            h = contentHeight < h ? contentHeight : parentHeight;
+            $tabs.css('min-height', h + 'px');
+        } else {
+            $content.css('min-height', h + 'px');
+        }
     }
 }
 $(document).on('ready', function () {
