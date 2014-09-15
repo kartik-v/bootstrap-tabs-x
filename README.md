@@ -1,10 +1,12 @@
 bootstrap-tabs-x
 =====================
 
-Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, and more. This plugin includes various CSS3 styling enhancements
+Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, load tab content via ajax, and more. This plugin includes various CSS3 styling enhancements
 and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com/javascript/#tabs).
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
+
+> NOTE: The latest version of the plugin v1.1.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
 
 ## Features  
 
@@ -16,6 +18,7 @@ The plugin offers these enhanced features:
 - Automatically align & format heights and widths for bordered tabs for `right` and `left` positions.
 - Allows a rotated `sideways` tab header orientation for the `right` and `left` tab directions.
 - Auto detect overflowing header labels for `sideways` orientation (with ellipsis styling) and display full label as a title on hover.
+- Ability to load tab content via ajax call.
 
 ## Demo
 
@@ -119,6 +122,23 @@ class to rotate the tab headers sideways for the `tabs-right` and `tabs-left` po
         ...
     </div>
 </div>
+```
+
+### Ajax Tabs
+
+With release v1.1.0, the plugin supports loading content via ajax. You can configure the following properties to each tab link, for ajax loading:
+
+- `data-url`: the server url that will process the ajax response and return a json encoded html
+- `data-loading-class`: the css class to be applied to the tab header when content is loading. Defaults to `kv-tab-loading`.
+
+For example: 
+
+```html
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#one2" data-toggle="tab">One</a></li>
+    <li><a href="#two2" data-toggle="tab" data-url="/site/load-tab-data">Two</a></li>
+    <li><a href="#three2" data-toggle="tab">Three</a></li>
+</ul>
 ```
 
 ### Tabs X Positions (Directions)

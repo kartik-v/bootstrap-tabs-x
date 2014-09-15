@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 1.0.0
+ * @version 1.1.0
  *
  * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to tab-align tabs in 
  * multiple ways, add borders, rotated titles, and more.
@@ -274,4 +274,13 @@
 
 .tabs-right.tab-sideways.tab-bordered .tab-content {
     margin-right: 41px;
+}
+
+.kv-tab-loading {
+    background-image: url('../img/loading.gif');
+    background-position: right 2px center;
+    background-repeat: no-repeat;
+    z-index: 15000;
+    cursor: wait;
+    opacity: 0.6;
 }
