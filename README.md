@@ -136,7 +136,7 @@ For example:
 ```html
 <ul class="nav nav-tabs">
     <li class="active"><a href="#one2" data-toggle="tab">One</a></li>
-    <li><a href="#two2" data-toggle="tab" data-url="/site/load-tab-data">Two</a></li>
+    <li><a href="#two2" data-toggle="tab" data-url="/site/loadTab.php">Two</a></li>
     <li><a href="#three2" data-toggle="tab">Three</a></li>
 </ul>
 ```
