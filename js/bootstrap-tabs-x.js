@@ -88,7 +88,7 @@ $(document).on('ready', function () {
                 $pane.removeClass(css).addClass(css);
             },
             success: function(data) {
-                $tab.html(data);
+                $tab.html(data.responseJSON);
                 $pane.tab('show');
                 $pane.removeClass(css);
             }
