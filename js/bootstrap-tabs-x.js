@@ -78,19 +78,23 @@ $(document).on('ready', function () {
             return;
         }
         e.preventDefault();
-        var $tab = $(this.hash), $pane = $(this),
+        var $tab = $(this.hash), $pane = $(this), $paneHeader = $pane,
             css = $(this).attr("data-loading-class") || 'kv-tab-loading';
+        $parent = $pane.closest('.dropdown');
+        if (!isEmpty($parent.attr('class'))) {
+            $paneHeader = $parent.find('.dropdown-toggle');
+        }
         $.ajax({
             type: 'post',
             dataType: 'json',
             url: vUrl,
             beforeSend: function() {
-                $pane.removeClass(css).addClass(css);
+                $paneHeader.removeClass(css).addClass(css);
             },
             success: function(data) {
                 $tab.html(data);
                 $pane.tab('show');
-                $pane.removeClass(css);
+                $paneHeader.removeClass(css);
             }
         });
     });
