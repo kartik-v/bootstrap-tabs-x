@@ -79,8 +79,8 @@ $(document).on('ready', function () {
         }
         e.preventDefault();
         var $tab = $(this.hash), $pane = $(this), $paneHeader = $pane,
-            css = $(this).attr("data-loading-class") || 'kv-tab-loading';
-        $parent = $pane.closest('.dropdown');
+            css = $(this).attr("data-loading-class") || 'kv-tab-loading',
+            $parent = $pane.closest('.dropdown');
         if (!isEmpty($parent.attr('class'))) {
             $paneHeader = $parent.find('.dropdown-toggle');
         }
@@ -99,9 +99,9 @@ $(document).on('ready', function () {
         });
     });
 
-// load first tab content
-$('#home').load($('.active a').attr("data-url"),function(result){
-  $('.active a').tab('show');
-});
+    // load first tab content
+    $('#home').load($('.active a').attr("data-url"),function(result){
+      $('.active a').tab('show');
+    });
 
 });
