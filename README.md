@@ -6,7 +6,7 @@ and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
 
-> NOTE: The latest version of the plugin v1.1.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.2.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
 
 ## Features  
 
