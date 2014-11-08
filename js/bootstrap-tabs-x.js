@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 1.1.0
+ * @version 1.2.0
  *
  * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs 
  * in multiple ways, add borders, rotated titles, and more.
