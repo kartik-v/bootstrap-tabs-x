@@ -1,12 +1,12 @@
 bootstrap-tabs-x
 =====================
 
-Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, load tab content via ajax, and more. This plugin includes various CSS3 styling enhancements
+Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, load tab content via ajax including caching, and more. This plugin includes various CSS3 styling enhancements
 and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com/javascript/#tabs).
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
 
-> NOTE: The latest version of the plugin v1.2.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.3.0 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
 
 ## Features  
 
@@ -19,6 +19,7 @@ The plugin offers these enhanced features:
 - Allows a rotated `sideways` tab header orientation for the `right` and `left` tab directions.
 - Auto detect overflowing header labels for `sideways` orientation (with ellipsis styling) and display full label as a title on hover.
 - Ability to load tab content via ajax call.
+- With release v1.3.0, you can use this like an enhanced jQuery plugin using the function `$fn.tabsX` on the `.tabs-x` parent element.
 
 ## Demo
 
@@ -141,6 +142,13 @@ For example:
 </ul>
 ```
 
+#### Caching Ajax Tabs
+
+The plugin by default includes a caching object to cache the content generated via Ajax. The following settings enable you to control the behavior:
+
+- `enableCache`: _boolean_, whether to enable caching of ajax generated tab pane content. Defaults to `true`.
+- `cacheTimeout`: _integer_, timeout in milli-seconds after which cache will be refreshed. Defaults to `300000` (i.e. `5` minutes).
+
 ### Tabs X Positions (Directions)
 
 You can set four different positions for your tabs - by adding one of the following CSS classes to your tabs container.
@@ -194,6 +202,51 @@ The plugin will automatically set the title attribute to show the complete label
 
 > NOTE: The sideways orientation makes sense for working only with the `tabs-left` and `tabs-right` positions. It is recommended not to use them with the `tabs-above` and `tabs-below` positions.
 
+### Tabs X Events
+
+The `bootstrap-tabs-x` plugin triggers additional events in addition to the events triggered by the parent bootstrap tabs plugin. The event is triggered on each tab link containing `[data-toggle=tab]`. The following events are available:
+
+#### tabsX.click
+This event is triggered on clicking each tab.
+
+```js
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event) {
+    console.log('tabsX.click event');
+});
+```
+
+#### tabsX.beforeSend
+This event is triggered before sending an ajax call to the server. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link.
+
+```js
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (event) {
+    console.log('tabsX.beforeSend event');
+});
+```
+
+#### tabsX.success
+This event is triggered before a successful completion of an ajax call to the server. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
+
+- `data`: _string_, the output data retrieved from the server via ajax response.
+
+```js
+$('div.tabs-x').on('tabsX.beforeSend', function (event, data) {
+    console.log('tabsX.beforeSend event');
+});
+```
+
+#### tabsX.error
+This event is triggered before a error in completion of an ajax call to the server. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
+
+- `request`: _object_, the jqXHR object.
+- `status`: _string_, the error text status.
+- `message`: _string_, the error exception message thrown.
+
+```js
+$('div.tabs-x').on('tabsX.error', function (event, request, status, message) {
+    console.log('tabsX.error event with message = "' + message + '"');
+});
+```
 ## License
 
 **bootstrap-tabs-x** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
