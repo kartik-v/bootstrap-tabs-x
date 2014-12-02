@@ -216,7 +216,7 @@ $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event)
 ```
 
 #### tabsX.beforeSend
-This event is triggered before sending an ajax call to the server. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link.
+This event is triggered before sending an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link.
 
 ```js
 $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (event) {
@@ -225,7 +225,7 @@ $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (e
 ```
 
 #### tabsX.success
-This event is triggered after successful completion of an ajax call to the server. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
+This event is triggered after successful completion of an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
 - `data`: _string_, the output data retrieved from the server via ajax response.
 
@@ -236,7 +236,7 @@ $('div.tabs-x').on('tabsX.beforeSend', function (event, data) {
 ```
 
 #### tabsX.error
-This event is triggered after an ajax processing error. Its applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
+This event is triggered after an ajax processing error. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
 - `request`: _object_, the jqXHR object.
 - `status`: _string_, the error text status.
