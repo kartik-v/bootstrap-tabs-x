@@ -147,7 +147,7 @@
                         },
                         error: function(request, status, message) {
                              $el.trigger('tabsX.error', [request, status, message]);
-                        },
+                        }
                     });
                     $el.trigger('tabsX.click');
                 });        
