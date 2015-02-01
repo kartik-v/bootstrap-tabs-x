@@ -1,10 +1,12 @@
 version 1.3.0
 =============
-**Date:** 02-Dec-2014
+**Date:** 31-Jan-2015
 
 1. (enh #3): Incorporate a new caching object and caching functionality settings for AJAX tabs.
 2. (enh #4): Revamp code to enable usage as a jQuery plugin function `$.fn.tabsX`.
 3. (enh #5): Trigger new events on tab click, ajax beforeSend, ajax success, and ajax error.
+4. (bug #6): Fix trailing comma in code.
+5. (enh #7): Code cleanup and restructure for JS lint changes (using JSHint Code cleanup library).
 
 version 1.2.0
 =============
