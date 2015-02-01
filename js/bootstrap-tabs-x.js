@@ -62,7 +62,6 @@
                 tabHeight = $tabs.outerHeight(), paneHeight = $pane.outerHeight(), tabWidth = $tabs.outerWidth(),
                 h = (tabHeight > paneHeight ? tabHeight : paneHeight + 20), contentHeight = $content.outerHeight(),
                 isFixed = $el.is('[class^="tab-height-"]'), parentHeight;
-
             if (isVerticalSide) {
                 if (isFixed) {
                     if (tabHeight < contentHeight) {
@@ -114,7 +113,6 @@
             $element.find('.nav-tabs li [data-toggle="tab"]').each(function () {
                 var $el = $(this), linkTxt = $el.text(), isVertical = self.isVertical,
                     maxLen = isEmpty($el.data('maxLength')) ? opts.maxTitleLength : $el.data('maxLength');
-
                 if (isVertical && linkTxt.length > maxLen && isEmpty($el.attr('title'))) {
                     $el.attr('title', linkTxt);
                 }
@@ -157,7 +155,6 @@
                     $el.trigger('tabsX.click');
                 });
             });
-
         },
         parseCache: function () {
             var self = this, opts = self.options;
