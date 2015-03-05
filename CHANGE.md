@@ -1,3 +1,9 @@
+version 1.3.1
+=============
+**Date:** 05-Mar-2015
+
+1. (enh #8): Better boolean validation of `enableCache`
+
 version 1.3.0
 =============
 **Date:** 31-Jan-2015

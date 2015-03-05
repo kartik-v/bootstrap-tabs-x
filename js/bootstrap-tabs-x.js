@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
- * @version 1.3.0
+ * @version 1.3.1
  *
  * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs 
  * in multiple ways, add borders, rotated titles, and more.
@@ -49,6 +49,7 @@
         init: function (options) {
             var self = this, $el = self.$element;
             self.options = options;
+            self.enableCache = options.enableCache == true  || options.enableCache === "true"; 
             self.$pane = $el.find('.tab-pane.active');
             self.$content = $el.find('.tab-content');
             self.$tabs = $el.find('.nav-tabs');
@@ -157,8 +158,8 @@
             });
         },
         parseCache: function () {
-            var self = this, opts = self.options;
-            if (!opts.enableCache) {
+            var self = this;
+            if (!self.enableCache) {
                 return false;
             }
             $.ajaxPrefilter(function (opts, origOpts) {
