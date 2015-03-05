@@ -231,7 +231,7 @@ _boolean_, whether to enable caching of ajax generated tab pane content. Default
 _integer_, timeout in milli-seconds after which cache will be refreshed. Defaults to `300000` (i.e. `5` minutes).
 
 #### maxTitleLength
-_integer_, the maximum length of characters in each tab pane title. Text overflowing beyond this limit will be hidden with an ellipsis (and displayed on mouse hover of the tab title). Defaults to `9`.
+_integer_, the maximum length of characters in each tab pane title for sideways text orientation only. Text overflowing beyond this limit will be hidden with an ellipsis (and displayed on mouse hover of the tab title). Defaults to `9`.
 
 #### ajaxSettings
 _object_, the additional  ajax options that you wish to send when submitting an ajax response and is applicable only for ajax tabs.

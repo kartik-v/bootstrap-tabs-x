@@ -106,6 +106,13 @@
                 }
             }
         },
+        setTitle: function($el) {
+            var self = this, txt = $.trim($el.text()), isVertical = self.isVertical,
+                maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');;
+            if (isVertical && txt.length > maxLen - 2 && isEmpty($el.attr('title'))) {
+                $el.attr('title', txt);
+            }
+        },
         listen: function () {
             var self = this, $element = self.$element;
             $element.find('.nav-tabs [data-toggle="tab"]').on('shown.bs.tab', function () {
@@ -114,12 +121,12 @@
             $element.find('.nav-tabs li.active [data-toggle="tab"]').each(function () {
                 self.format($(this), true);
             });
+            $element.find('.nav-tabs li [data-toggle="dropdown"]').each(function () {
+                self.setTitle($(this));
+            });
             $element.find('.nav-tabs li [data-toggle="tab"]').each(function () {
-                var $el = $(this), linkTxt = $el.text(), isVertical = self.isVertical,
-                    maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');
-                if (isVertical && linkTxt.length > maxLen && isEmpty($el.attr('title'))) {
-                    $el.attr('title', linkTxt);
-                }
+                var $el = $(this);
+                self.setTitle($el);
                 $el.on('click', function (e) {
                     var vUrl = $(this).attr("data-url"), settings;
                     if (isEmpty(vUrl)) {
