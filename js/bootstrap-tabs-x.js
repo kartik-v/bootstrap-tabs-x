@@ -47,15 +47,18 @@
     TabsX.prototype = {
         constructor: TabsX,
         init: function (options) {
-            var self = this, $el = self.$element;
-            self.options = options;
-            self.enableCache = options.enableCache == true  || options.enableCache === "true"; 
+            var self = this, $el = self.$element, chk;
+            $.each(options, function (key, val) {
+                self[key] = val;
+            });
+            chk = self.enableCache;
+            self.enableCache = chk === true || chk === "true" || parseInt(chk) === 1;
             self.$pane = $el.find('.tab-pane.active');
             self.$content = $el.find('.tab-content');
             self.$tabs = $el.find('.nav-tabs');
             self.isVertical = ($el.hasClass('tabs-left') || $el.hasClass('tabs-right'));
             self.isVerticalSide = self.isVertical && $el.hasClass('tab-sideways');
-            kvTabsCache.timeout = options.cacheTimeout;
+            kvTabsCache.timeout = self.cacheTimeout;
         },
         format: function ($tabLink, initialize) {
             var self = this, $el = self.$element, $pane = self.$pane, $content = self.$content,
@@ -104,7 +107,7 @@
             }
         },
         listen: function () {
-            var self = this, $element = self.$element, opts = self.options;
+            var self = this, $element = self.$element;
             $element.find('.nav-tabs [data-toggle="tab"]').on('shown.bs.tab', function () {
                 self.format($(this), false);
             });
@@ -113,12 +116,12 @@
             });
             $element.find('.nav-tabs li [data-toggle="tab"]').each(function () {
                 var $el = $(this), linkTxt = $el.text(), isVertical = self.isVertical,
-                    maxLen = isEmpty($el.data('maxLength')) ? opts.maxTitleLength : $el.data('maxLength');
+                    maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');
                 if (isVertical && linkTxt.length > maxLen && isEmpty($el.attr('title'))) {
                     $el.attr('title', linkTxt);
                 }
                 $el.on('click', function (e) {
-                    var vUrl = $(this).attr("data-url");
+                    var vUrl = $(this).attr("data-url"), settings;
                     if (isEmpty(vUrl)) {
                         $el.trigger('tabsX.click');
                         return;
@@ -131,11 +134,10 @@
                         $paneHeader = $element.find('.dropdown-toggle');
                     }
                     self.parseCache();
-                    $.ajax({
+                    settings = $.extend({
                         type: 'post',
                         dataType: 'json',
                         url: vUrl,
-                        cache: true,
                         beforeSend: function () {
                             $tab.html('<br><br><br>');
                             $paneHeader.removeClass(css).addClass(css);
@@ -152,7 +154,8 @@
                         error: function (request, status, message) {
                             $el.trigger('tabsX.error', [request, status, message]);
                         }
-                    });
+                    }, self.ajaxSettings);
+                    $.ajax(settings);
                     $el.trigger('tabsX.click');
                 });
             });
@@ -207,7 +210,8 @@
     $.fn.tabsX.defaults = {
         enableCache: true,
         cacheTimeout: 300000,
-        maxTitleLength: 9
+        maxTitleLength: 9,
+        ajaxSettings: {}
     };
 
     $(document).on('ready', function () {

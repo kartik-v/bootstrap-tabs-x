@@ -101,11 +101,32 @@ You just need to setup the markup for the extended bootstrap tabs to work now. R
 
 ### Via Javascript
 
-The javascript methods and events available in the core bootstrap tabs plugin will be available here as well.
+The javascript methods and events available in the core bootstrap tabs plugin will be available here as well. In addition, the `tabsX` plugin function behavior is auto-initialized if you set the CSS class `tabs-x` on a container element on the page (e.g. `div`). You can optionally enable tabsX behavior manually via javascript. For example if your markup is like below:
+
+```html
+<div id="tabs-container" class="align-center">
+    <ul class="nav nav-tabs">
+        ...
+    </ul>
+    <div class="tab-content">
+        ...
+    </div>
+</div>
+```
+
+You can enable the tabsX plugin via javascript like below:
+
+```js
+$("#tabs-container).tabsX({
+    enableCache: true,
+    maxTitleLength: 10
+});
+```
 
 ## Documentation
 
 The entire tabs behavior can be controlled through HTML markup. The various markup options available for the `bootstrap-tabs-x` plugin are mentioned below:
+
 
 ### Tabs X Container
 
@@ -144,10 +165,7 @@ For example:
 
 #### Caching Ajax Tabs
 
-The plugin by default includes a caching object to cache the content generated via Ajax. The following settings enable you to control the behavior:
-
-- `enableCache`: _boolean_, whether to enable caching of ajax generated tab pane content. Defaults to `true`.
-- `cacheTimeout`: _integer_, timeout in milli-seconds after which cache will be refreshed. Defaults to `300000` (i.e. `5` minutes).
+The plugin by default includes a caching object to cache the content generated via Ajax. Refer `enableCache` and `cacheTimeout` plugin options for details.
 
 ### Tabs X Positions (Directions)
 
@@ -202,7 +220,23 @@ The plugin will automatically set the title attribute to show the complete label
 
 > NOTE: The sideways orientation makes sense for working only with the `tabs-left` and `tabs-right` positions. It is recommended not to use them with the `tabs-above` and `tabs-below` positions.
 
-### Tabs X Events
+### Tabs X Plugin Options
+
+The plugin options can also be set as HTML5 data attributes on the tabs-x main container.
+
+#### enableCache
+_boolean_, whether to enable caching of ajax generated tab pane content. Defaults to `true`.
+
+#### cacheTimeout
+_integer_, timeout in milli-seconds after which cache will be refreshed. Defaults to `300000` (i.e. `5` minutes).
+
+#### maxTitleLength
+_integer_, the maximum length of characters in each tab pane title. Text overflowing beyond this limit will be hidden with an ellipsis (and displayed on mouse hover of the tab title). Defaults to `9`.
+
+#### ajaxSettings
+_object_, the additional  ajax options that you wish to send when submitting an ajax response and is applicable only for ajax tabs.
+
+### Tabs X Plugin Events
 
 The `bootstrap-tabs-x` plugin triggers additional events in addition to the events triggered by the parent bootstrap tabs plugin. The event is triggered on each tab link containing `[data-toggle=tab]`. The following events are available:
 
@@ -247,6 +281,7 @@ $('div.tabs-x').on('tabsX.error', function (event, request, status, message) {
     console.log('tabsX.error event with message = "' + message + '"');
 });
 ```
+
 ## License
 
 **bootstrap-tabs-x** is released under the BSD 3-Clause License. See the bundled `LICENSE.md` for details.
