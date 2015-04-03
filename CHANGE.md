@@ -1,10 +1,14 @@
 version 1.3.1
 =============
-**Date:** 05-Mar-2015
+**Date:** 03-Apr-2015
 
 1. (enh #8): Better boolean validation of `enableCache`.
 2. (enh #9): Add new property `ajaxSettings` to allow extending ajax configuration.
-2. (enh #10): Better validation of maxTitleLength for sideways orientation.
+3. (enh #10): Better validation of maxTitleLength for sideways orientation.
+4. (enh #11): More intelligent and optimal caching for ajax tabs.
+5. (enh #12): Enhance auto border rendering after ajax load for vertical tabs (placed left or right).
+6. (enh #13): Enhance tabsX events for including parameters.
+7. (enh #14): Ability to configure success and error callbacks at plugin initialization.
 
 version 1.3.0
 =============

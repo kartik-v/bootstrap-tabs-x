@@ -16,25 +16,13 @@
         kvTabsCache = {
             timeout: 300000,
             data: {},
-            remove: function (url) {
-                delete kvTabsCache.data[url];
+            exist: function (key) {
+                return !!kvTabsCache.data[key] &&
+                ((new Date().getTime() - kvTabsCache.data[key]) < kvTabsCache.timeout);
             },
-            exist: function (url) {
-                return !!kvTabsCache.data[url] &&
-                ((new Date().getTime() - kvTabsCache.data[url]._) < kvTabsCache.timeout);
-            },
-            get: function (url) {
-                return kvTabsCache.data[url].data;
-            },
-            set: function (url, cachedData, callback) {
-                kvTabsCache.remove(url);
-                kvTabsCache.data[url] = {
-                    _: new Date().getTime(),
-                    data: cachedData
-                };
-                if ($.isFunction(callback)) {
-                    callback(cachedData);
-                }
+            set: function (key) {
+                delete kvTabsCache.data[key];
+                kvTabsCache.data[key] = new Date().getTime();
             }
         },
         TabsX = function (element, options) {
@@ -106,9 +94,10 @@
                 }
             }
         },
-        setTitle: function($el) {
+        setTitle: function ($el) {
             var self = this, txt = $.trim($el.text()), isVertical = self.isVertical,
-                maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');;
+                maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');
+            ;
             if (isVertical && txt.length > maxLen - 2 && isEmpty($el.attr('title'))) {
                 $el.attr('title', txt);
             }
@@ -128,69 +117,56 @@
                 var $el = $(this);
                 self.setTitle($el);
                 $el.on('click', function (e) {
-                    var vUrl = $(this).attr("data-url"), settings;
-                    if (isEmpty(vUrl)) {
+                    var vUrl = $(this).attr("data-url"), vHash = this.hash, cacheKey = vUrl + vHash, settings;
+                    if (isEmpty(vUrl) || self.enableCache && kvTabsCache.exist(cacheKey)) {
                         $el.trigger('tabsX.click');
                         return;
                     }
                     e.preventDefault();
-                    var $tab = $(this.hash), $pane = $(this), $paneHeader = $pane,
+                    var $tab = $(vHash), $pane = $(this), $paneHeader = $pane,
                         css = $(this).attr("data-loading-class") || 'kv-tab-loading',
-                        $element = $pane.closest('.dropdown');
+                        $element = $pane.closest('.dropdown'),
+                        cbSuccess = self.successCallback[vHash] || null,
+                        cbError = self.errorCallback[vHash] || null;
                     if (!isEmpty($element.attr('class'))) {
                         $paneHeader = $element.find('.dropdown-toggle');
                     }
-                    self.parseCache();
                     settings = $.extend({
                         type: 'post',
                         dataType: 'json',
                         url: vUrl,
-                        beforeSend: function () {
+                        beforeSend: function (jqXHR, settings) {
                             $tab.html('<br><br><br>');
                             $paneHeader.removeClass(css).addClass(css);
-                            $el.trigger('tabsX.beforeSend');
+                            $el.trigger('tabsX.beforeSend', [jqXHR, settings]);
                         },
-                        success: function (data) {
-                            setTimeout(function () {
+                        success: function (data, status, jqXHR) {
+                            setTimeout(function() {
                                 $tab.html(data);
                                 $pane.tab('show');
                                 $paneHeader.removeClass(css);
-                            }, 100);
-                            $el.trigger('tabsX.success', [data]);
+                                self.format($el, false);
+                                if (self.enableCache) {
+                                    kvTabsCache.set(cacheKey);
+                                }
+                                if (cbSuccess && typeof cbSuccess === "function") {
+                                    cbSuccess(data, status, jqXHR);
+                                }
+                                $el.trigger('tabsX.success', [data, status, jqXHR]);
+                            }, 300);
                         },
-                        error: function (request, status, message) {
-                            $el.trigger('tabsX.error', [request, status, message]);
+                        error: function (jqXHR, status, message) {
+                            if (cbError && typeof cbError === "function") {
+                                cbError(jqXHR, status, message);
+                            }
+                            $el.trigger('tabsX.error', [jqXHR, status, message]);
+                        },
+                        complete: function (jqXHR, status) {
+                            $el.trigger('tabsX.click', [jqXHR, status]);
                         }
                     }, self.ajaxSettings);
                     $.ajax(settings);
-                    $el.trigger('tabsX.click');
                 });
-            });
-        },
-        parseCache: function () {
-            var self = this;
-            if (!self.enableCache) {
-                return false;
-            }
-            $.ajaxPrefilter(function (opts, origOpts) {
-                if (opts.cache) {
-                    var beforeSend = origOpts.beforeSend || $.noop,
-                        success = origOpts.success || $.noop,
-                        url = origOpts.url;
-                    //remove jQuery cache as we have our own kvTabsCache
-                    opts.cache = false;
-                    opts.beforeSend = function () {
-                        beforeSend();
-                        if (kvTabsCache.exist(url)) {
-                            success(kvTabsCache.get(url));
-                            return false;
-                        }
-                        return true;
-                    };
-                    opts.success = function (data) {
-                        kvTabsCache.set(url, data, success);
-                    };
-                }
             });
         }
     };
@@ -218,7 +194,9 @@
         enableCache: true,
         cacheTimeout: 300000,
         maxTitleLength: 9,
-        ajaxSettings: {}
+        ajaxSettings: {},
+        successCallback: {},
+        errorCallback: {}
     };
 
     $(document).on('ready', function () {

@@ -234,14 +234,80 @@ _integer_, timeout in milli-seconds after which cache will be refreshed. Default
 _integer_, the maximum length of characters in each tab pane title for sideways text orientation only. Text overflowing beyond this limit will be hidden with an ellipsis (and displayed on mouse hover of the tab title). Defaults to `9`.
 
 #### ajaxSettings
-_object_, the additional  ajax options that you wish to send when submitting an ajax response and is applicable only for ajax tabs.
+_object_, the additional ajax options that you wish to send when submitting an ajax response and is applicable only for ajax tabs.
+
+#### successCallback
+_object_, the callback function settings (only for ajax tabs) that will be triggered after successful rendering of the ajax content in the ajax tabs. You must set this as an associative array of key value pairs, where each key points to the tab pane identifier. For example if your tabs markup is as below:
+
+```html
+<div id="tabs-container" class="align-center">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane-1" data-toggle="tab">One</a></li>
+        <li><a href="#pane-2" data-toggle="tab" data-url="/site/loadTab.php">Two</a></li>
+        <li><a href="#pane-3" data-toggle="tab">Three</a></li>
+    </ul>
+</div>
+```
+
+you can then setup a successCallback for each tab pane this way:
+
+```js
+$("#tabs-container).tabsX({
+    enableCache: true,
+    maxTitleLength: 10,
+    successCallback: {
+        'pane-1': function (data, status, jqXHR) {
+            // callback code
+        },
+        'pane-2': function (data, status, jqXHR) {
+            // callback code
+        },
+        'pane-3': function (data, status, jqXHR) {
+            // callback code
+        }        
+    }
+});
+```
+
+#### errorCallback
+_object_, the callback function settings (only for ajax tabs) that will be triggered after an error is received in rendering of the ajax content in the ajax tabs. You must set this as an associative array of key value pairs, where each key points to the tab pane identifier. For example if your tabs markup is as below:
+
+```html
+<div id="tabs-container" class="align-center">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#pane-1" data-toggle="tab">One</a></li>
+        <li><a href="#pane-2" data-toggle="tab" data-url="/site/loadTab.php">Two</a></li>
+        <li><a href="#pane-3" data-toggle="tab">Three</a></li>
+    </ul>
+</div>
+```
+
+you can then setup a `errorCallback` for each tab pane this way:
+
+```js
+$("#tabs-container).tabsX({
+    enableCache: true,
+    maxTitleLength: 10,
+    errorCallback: {
+        'pane-1': function (jqXHR, status, message) {
+            // callback code
+        },
+        'pane-2': function (jqXHR, status, message) {
+            // callback code
+        },
+        'pane-3': function (jqXHR, status, message) {
+            // callback code
+        }        
+    }
+});
+```
 
 ### Tabs X Plugin Events
 
 The `bootstrap-tabs-x` plugin triggers additional events in addition to the events triggered by the parent bootstrap tabs plugin. The event is triggered on each tab link containing `[data-toggle=tab]`. The following events are available:
 
 #### tabsX.click
-This event is triggered on clicking each tab.
+This event is triggered on clicking each tab and after content is typically shown in the tab. 
 
 ```js
 $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event) {
@@ -249,11 +315,25 @@ $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event)
 });
 ```
 
-#### tabsX.beforeSend
-This event is triggered before sending an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link.
+For ajax tabs, this event is triggered after the content is loaded in the tab pane. The following parameters are available with this event for ajax enabled tabs:
+
+- `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
+- `status`: _string_, the status text received from the server via ajax response.
 
 ```js
-$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (event) {
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event, jqXHR, status) {
+    console.log('tabsX.click event');
+});
+```
+
+#### tabsX.beforeSend
+This event is triggered before sending an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following parameters are available with this event:
+
+- `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
+- `settings`: _object_, the settings object for jquery ajax before send.
+
+```js
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (event, jqXHR, settings) {
     console.log('tabsX.beforeSend event');
 });
 ```
@@ -262,25 +342,31 @@ $('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (e
 This event is triggered after successful completion of an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
 - `data`: _string_, the output data retrieved from the server via ajax response.
+- `status`: _string_, the status text received from the server via ajax response.
+- `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
 
 ```js
-$('div.tabs-x').on('tabsX.beforeSend', function (event, data) {
+$('div.tabs-x').on('tabsX.beforeSend', function (event, data, status, jqXHR) {
     console.log('tabsX.beforeSend event');
 });
 ```
 
+> Note: Check the `successCallback` option of the plugin for an alternative easier way to configure callbacks on ajax success for all tab panes.
+
 #### tabsX.error
 This event is triggered after an ajax processing error. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
-- `request`: _object_, the jqXHR object.
-- `status`: _string_, the error text status.
+- `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
+- `status`: _string_, the status text received from the server via ajax response.
 - `message`: _string_, the error exception message thrown.
 
 ```js
-$('div.tabs-x').on('tabsX.error', function (event, request, status, message) {
+$('div.tabs-x').on('tabsX.error', function (event, jqXHR, status, message) {
     console.log('tabsX.error event with message = "' + message + '"');
 });
 ```
+
+> Note: Check the `errorCallback` option of the plugin for an alternative easier way to configure callbacks on ajax error for all tab panes.
 
 ## License
 
