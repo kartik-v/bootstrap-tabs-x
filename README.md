@@ -1,6 +1,12 @@
 bootstrap-tabs-x
 =====================
 
+[![BOWER version](https://badge-me.herokuapp.com/api/bower/kartik-v/bootstrap-tabs-x.png)](http://badges.enytc.com/for/bower/kartik-v/bootstrap-tabs-x)
+[![Latest Stable Version](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
+[![License](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/license)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
+[![Packagist Downloads](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/downloads)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
+[![Monthly Downloads](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/d/monthly)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
+
 Extended Bootstrap Tabs with ability to align tabs in multiple ways, add borders, rotated titles, load tab content via ajax including caching, and more. This plugin includes various CSS3 styling enhancements
 and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com/javascript/#tabs).
 
