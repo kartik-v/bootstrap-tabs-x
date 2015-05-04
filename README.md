@@ -1,7 +1,7 @@
 bootstrap-tabs-x
 =====================
 
-[![BOWER version](https://badge-me.herokuapp.com/api/bower/kartik-v/bootstrap-tabs-x.png)](http://badges.enytc.com/for/bower/kartik-v/bootstrap-tabs-x)
+[![Bower version](https://badge.fury.io/bo/bootstrap-tabs-x.svg)](http://badge.fury.io/bo/bootstrap-tabs-x)
 [![Latest Stable Version](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/v/stable)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
 [![License](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/license)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
 [![Packagist Downloads](https://poser.pugx.org/kartik-v/bootstrap-tabs-x/downloads)](https://packagist.org/packages/kartik-v/bootstrap-tabs-x)
