@@ -1,6 +1,6 @@
 version 1.3.1
 =============
-**Date:** 03-Apr-2015
+**Date:** 18-Jun-2015
 
 1. (enh #8): Better boolean validation of `enableCache`.
 2. (enh #9): Add new property `ajaxSettings` to allow extending ajax configuration.

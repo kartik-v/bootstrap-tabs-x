@@ -1,5 +1,5 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014
+ * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
  * @version 1.3.1
  *
  * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs 

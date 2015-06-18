@@ -47,11 +47,11 @@ You can use the `bower` package manager to install. Run:
 ### Using Composer
 You can use the `composer` package manager to install. Either run:
 
-    $ php composer.phar require kartik-v/bootstrap-tabs-x "dev-master"
+    $ php composer.phar require kartik-v/bootstrap-tabs-x "@dev"
 
 or add:
 
-    "kartik-v/bootstrap-tabs-x": "dev-master"
+    "kartik-v/bootstrap-tabs-x": "@dev"
 
 to your composer.json file
 
