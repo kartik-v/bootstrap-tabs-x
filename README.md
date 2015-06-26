@@ -12,7 +12,7 @@ and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
 
-> NOTE: The latest version of the plugin v1.3.1 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
+> NOTE: The latest version of the plugin v1.3.2 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
 
 ## Features  
 
@@ -307,6 +307,9 @@ $("#tabs-container).tabsX({
     }
 });
 ```
+
+#### addCss
+_string_, the additional CSS class to add to the tabs-x main container. This defaults to `tabs-krajee`. The `tabs-krajee` CSS class is included with the inbuilt CSS file and adds specific sizing and alignment for **left** and **right** positioned tabs.
 
 ### Tabs X Plugin Events
 

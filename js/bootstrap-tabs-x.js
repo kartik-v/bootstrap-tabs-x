@@ -1,6 +1,6 @@
 /*!
  * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2015
- * @version 1.3.1
+ * @version 1.3.2
  *
  * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs 
  * in multiple ways, add borders, rotated titles, and more.
@@ -40,83 +40,44 @@
                 self[key] = val;
             });
             chk = self.enableCache;
+            if (!isEmpty(self.addCss) && !$el.hasClass(self.addCss)) {
+                $el.addClass(self.addCss);
+            }
             self.enableCache = chk === true || chk === "true" || parseInt(chk) === 1;
             self.$pane = $el.find('.tab-pane.active');
             self.$content = $el.find('.tab-content');
             self.$tabs = $el.find('.nav-tabs');
             self.isVertical = ($el.hasClass('tabs-left') || $el.hasClass('tabs-right'));
             self.isVerticalSide = self.isVertical && $el.hasClass('tab-sideways');
-            kvTabsCache.timeout = self.cacheTimeout;
-        },
-        format: function ($tabLink, initialize) {
-            var self = this, $el = self.$element, $pane = self.$pane, $content = self.$content,
-                isVertical = self.isVertical, isVerticalSide = self.isVerticalSide, $tabs = self.$tabs,
-                tabHeight = $tabs.outerHeight(), paneHeight = $pane.outerHeight(), tabWidth = $tabs.outerWidth(),
-                h = (tabHeight > paneHeight ? tabHeight : paneHeight + 20), contentHeight = $content.outerHeight(),
-                isFixed = $el.is('[class^="tab-height-"]'), parentHeight;
-            if (isVerticalSide) {
-                if (isFixed) {
-                    if (tabHeight < contentHeight) {
-                        $tabs.height(contentHeight);
-                    }
-                    return;
-                }
-                if ($tabLink.is(':last-child') && tabHeight > paneHeight && initialize) {
-                    $el.height(h + 1);
-                } else {
-                    $el.height(h);
-                }
-            } else {
-                if (isVertical) {
-                    h = tabHeight > paneHeight ? tabHeight : paneHeight + 32;
-                    if ($el.hasClass('tabs-left')) {
-                        $content.css('margin-left', tabWidth + 'px');
-                    } else {
-                        if ($el.hasClass('tabs-right')) {
-                            $content.css('margin-right', tabWidth + 'px');
-                        }
-                    }
-                    if (isFixed) {
-                        if (tabHeight < contentHeight) {
-                            $tabs.height(contentHeight);
-                        }
-                        return;
-                    }
-                    $el.css('min-height', h + 'px');
-                    contentHeight = $content.outerHeight();
-                    parentHeight = $el.outerHeight();
-                    if (contentHeight > tabHeight) {
-                        h = contentHeight < h ? contentHeight : parentHeight;
-                        $tabs.css('min-height', h + 'px');
-                    } else {
-                        $content.css('min-height', h + 'px');
-                    }
-                }
+            if (self.isVertical) {
+                self.$content.css('min-height', self.$tabs.outerHeight() + 1 + 'px');
             }
+            kvTabsCache.timeout = self.cacheTimeout;
         },
         setTitle: function ($el) {
             var self = this, txt = $.trim($el.text()), isVertical = self.isVertical,
-                maxLen = isEmpty($el.data('maxLength')) ? self.maxTitleLength : $el.data('maxLength');
-            ;
+                maxLen = isEmpty($el.data('maxTitleLength')) ? self.maxTitleLength : $el.data('maxTitleLength');
             if (isVertical && txt.length > maxLen - 2 && isEmpty($el.attr('title'))) {
                 $el.attr('title', txt);
             }
         },
         listen: function () {
             var self = this, $element = self.$element;
-            $element.find('.nav-tabs [data-toggle="tab"]').on('shown.bs.tab', function () {
-                self.format($(this), false);
-            });
-            $element.find('.nav-tabs li.active [data-toggle="tab"]').each(function () {
-                self.format($(this), true);
+            $element.find('.nav-tabs li.disabled').each(function () {
+                $(this).find('[data-toggle="tab"]').removeAttr('data-toggle');
             });
             $element.find('.nav-tabs li [data-toggle="dropdown"]').each(function () {
                 self.setTitle($(this));
             });
             $element.find('.nav-tabs li [data-toggle="tab"]').each(function () {
-                var $el = $(this);
+                var $el = $(this), $item = $el.closest('li');
+                $item.removeAttr('data-toggle');
                 self.setTitle($el);
                 $el.on('click', function (e) {
+                    if ($item.hasClass('disabled')) {
+                        e.preventDefault();
+                        return;
+                    }
                     var vUrl = $(this).attr("data-url"), vHash = this.hash, cacheKey = vUrl + vHash, settings;
                     if (isEmpty(vUrl) || self.enableCache && kvTabsCache.exist(cacheKey)) {
                         $el.trigger('tabsX.click');
@@ -141,11 +102,10 @@
                             $el.trigger('tabsX.beforeSend', [jqXHR, settings]);
                         },
                         success: function (data, status, jqXHR) {
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $tab.html(data);
                                 $pane.tab('show');
                                 $paneHeader.removeClass(css);
-                                self.format($el, false);
                                 if (self.enableCache) {
                                     kvTabsCache.set(cacheKey);
                                 }
@@ -196,7 +156,8 @@
         maxTitleLength: 9,
         ajaxSettings: {},
         successCallback: {},
-        errorCallback: {}
+        errorCallback: {},
+        addCss: 'tabs-krajee'
     };
 
     $(document).on('ready', function () {

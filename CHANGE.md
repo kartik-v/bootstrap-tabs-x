@@ -1,3 +1,12 @@
+version 1.3.2
+=============
+**Date:** 26-Jun-2015
+
+1. (enh #16): Auto size tab height for left and right positioned tabs.
+2. (enh #17): New property `addCss` for left/right tabs.
+3. (enh #18): Validate `disabled` tabs.
+4. (enh #19): Various tab CSS styling enhancements.
+
 version 1.3.1
 =============
 **Date:** 18-Jun-2015
