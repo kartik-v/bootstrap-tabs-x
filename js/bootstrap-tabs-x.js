@@ -128,6 +128,9 @@
                     $.ajax(settings);
                 });
             });
+        },
+        flushCache: function () {
+            kvTabsCache.data = {};
         }
     };
 
