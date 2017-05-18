@@ -1,3 +1,9 @@
+version 1.3.3
+=============
+**Date:** 17-May-2017
+
+1. Added flushCache method for modal scenario
+
 version 1.3.2
 =============
 **Date:** 26-Jun-2015
