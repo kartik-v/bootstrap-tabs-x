@@ -38,6 +38,9 @@
         constructor: TabsX,
         init: function (options) {
             var self = this, $el = self.$element;
+            $.each(options, function (key, val) {
+                self[key] = val;
+            });
             self.cache = {
                 timeout: self.cacheTimeout,
                 data: {},
@@ -50,9 +53,6 @@
                     self.cache.data[key] = new Date().getTime();
                 }
             };
-            $.each(options, function (key, val) {
-                self[key] = val;
-            });
             self.enableCache = !!self.enableCache;
             if (!isEmpty(self.addCss) && !$el.hasClass(self.addCss)) {
                 $el.addClass(self.addCss);
