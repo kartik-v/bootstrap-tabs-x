@@ -41,18 +41,7 @@
             $.each(options, function (key, val) {
                 self[key] = val;
             });
-            self.cache = {
-                timeout: self.cacheTimeout,
-                data: {},
-                exist: function (key) {
-                    return !!self.cache.data[key] &&
-                        ((new Date().getTime() - self.cache.data[key]) < self.cache.timeout);
-                },
-                set: function (key) {
-                    delete self.cache.data[key];
-                    self.cache.data[key] = new Date().getTime();
-                }
-            };
+            self.initCache();
             self.enableCache = !!self.enableCache;
             if (!isEmpty(self.addCss) && !$el.hasClass(self.addCss)) {
                 $el.addClass(self.addCss);
@@ -140,6 +129,21 @@
                     $.ajax(settings);
                 });
             });
+        },
+        initCache: function() {
+            var self = this;
+            self.cache = {
+                timeout: self.cacheTimeout,
+                data: {},
+                exist: function (key) {
+                    return !!self.cache.data[key] &&
+                        ((new Date().getTime() - self.cache.data[key]) < self.cache.timeout);
+                },
+                set: function (key) {
+                    delete self.cache.data[key];
+                    self.cache.data[key] = new Date().getTime();
+                }
+            };
         },
         flushCache: function () {
             var self = this;

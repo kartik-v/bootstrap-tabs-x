@@ -315,8 +315,16 @@ _string_, the additional CSS class to add to the tabs-x main container. This def
 
 The `bootstrap-tabs-x` plugin allows access to the following methods:
 
+#### initCache
+This method initializes the tabs cache to original settings. It is applicable when `enableCache` is set to `true`. One can call this method via javascript as shown below:
+
+```js
+$('#tabs-container').tabsX('initCache');
+// tabs-container is the main tabs container on which the tabs-x plugin is initialized
+```
+
 #### flushCache
-This method flushes and clears the tabs cache. It is applicable when `enableCache` is set to `true`. One can call this method via javascript as shown below:
+This method just flushes and clears the tabs cache. It is applicable when `enableCache` is set to `true`. One can call this method via javascript as shown below:
 
 ```js
 $('#tabs-container').tabsX('flushCache');
