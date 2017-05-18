@@ -12,7 +12,7 @@ and various tweaks to the core [Bootstrap 3 Tabs plugin](http://getbootstrap.com
 
 ![Bootstrap Tabs X Screenshot](https://lh3.googleusercontent.com/-vWD5-6XoYp4/U9zmysBfbEI/AAAAAAAAALo/-Hkbe-YAB6k/w678-h551-no/bootstrap-tabs-x.jpg)
 
-> NOTE: The latest version of the plugin v1.3.2 has been released. Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
+> NOTE: The latest release of the plugin is v1.3.3 (_under development_). Refer the [CHANGE LOG](https://github.com/kartik-v/bootstrap-tabs-x/blob/master/CHANGE.md) for details.
 
 ## Features  
 
@@ -311,16 +311,28 @@ $("#tabs-container).tabsX({
 #### addCss
 _string_, the additional CSS class to add to the tabs-x main container. This defaults to `tabs-krajee`. The `tabs-krajee` CSS class is included with the inbuilt CSS file and adds specific sizing and alignment for **left** and **right** positioned tabs.
 
+### Tabs X Plugin Methods
+
+The `bootstrap-tabs-x` plugin allows access to the following methods:
+
+#### flushCache
+This method flushes and clears the tabs cache. It is applicable when `enableCache` is set to `true`. One can call this method via javascript as shown below:
+
+```js
+$('#tabs-container').tabsX('flushCache');
+// tabs-container is the main tabs container on which the tabs-x plugin is initialized
+```
+
 ### Tabs X Plugin Events
 
 The `bootstrap-tabs-x` plugin triggers additional events in addition to the events triggered by the parent bootstrap tabs plugin. The event is triggered on each tab link containing `[data-toggle=tab]`. The following events are available:
 
-#### tabsX.click
+#### tabsX:click
 This event is triggered on clicking each tab and after content is typically shown in the tab. 
 
 ```js
-$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event) {
-    console.log('tabsX.click event');
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX:click', function (event) {
+    console.log('tabsX:click event');
 });
 ```
 
@@ -330,24 +342,24 @@ For ajax tabs, this event is triggered after the content is loaded in the tab pa
 - `status`: _string_, the status text received from the server via ajax response.
 
 ```js
-$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.click', function (event, jqXHR, status) {
-    console.log('tabsX.click event');
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX:click', function (event, jqXHR, status) {
+    console.log('tabsX:click event');
 });
 ```
 
-#### tabsX.beforeSend
+#### tabsX:beforeSend
 This event is triggered before sending an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following parameters are available with this event:
 
 - `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
 - `settings`: _object_, the settings object for jquery ajax before send.
 
 ```js
-$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX.beforeSend', function (event, jqXHR, settings) {
-    console.log('tabsX.beforeSend event');
+$('div.tabs-x .nav-tabs [data-toggle="tab"]').on('tabsX:beforeSend', function (event, jqXHR, settings) {
+    console.log('tabsX:beforeSend event');
 });
 ```
 
-#### tabsX.success
+#### tabsX:success
 This event is triggered after successful completion of an ajax call to the server. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
 - `data`: _string_, the output data retrieved from the server via ajax response.
@@ -355,14 +367,14 @@ This event is triggered after successful completion of an ajax call to the serve
 - `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
 
 ```js
-$('div.tabs-x').on('tabsX.beforeSend', function (event, data, status, jqXHR) {
-    console.log('tabsX.beforeSend event');
+$('div.tabs-x').on('tabsX:beforeSend', function (event, data, status, jqXHR) {
+    console.log('tabsX:beforeSend event');
 });
 ```
 
 > Note: Check the `successCallback` option of the plugin for an alternative easier way to configure callbacks on ajax success for all tab panes.
 
-#### tabsX.error
+#### tabsX:error
 This event is triggered after an ajax processing error. It is applicable only for ajax tabs when you set a `data-url` attribute on your tab link. The following additional parameters are available with this event:
 
 - `jqXHR`: _object_, the `jQuery XMLHttpRequest` object used for the ajax transaction.
@@ -370,8 +382,8 @@ This event is triggered after an ajax processing error. It is applicable only fo
 - `message`: _string_, the error exception message thrown.
 
 ```js
-$('div.tabs-x').on('tabsX.error', function (event, jqXHR, status, message) {
-    console.log('tabsX.error event with message = "' + message + '"');
+$('div.tabs-x').on('tabsX:error', function (event, jqXHR, status, message) {
+    console.log('tabsX:error event with message = "' + message + '"');
 });
 ```
 
