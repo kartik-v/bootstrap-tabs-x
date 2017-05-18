@@ -123,7 +123,7 @@ The javascript methods and events available in the core bootstrap tabs plugin wi
 You can enable the tabsX plugin via javascript like below:
 
 ```js
-$("#tabs-container).tabsX({
+$("#tabs-container").tabsX({
     enableCache: true,
     maxTitleLength: 10
 });
@@ -258,7 +258,7 @@ _object_, the callback function settings (only for ajax tabs) that will be trigg
 you can then setup a successCallback for each tab pane this way:
 
 ```js
-$("#tabs-container).tabsX({
+$("#tabs-container").tabsX({
     enableCache: true,
     maxTitleLength: 10,
     successCallback: {
@@ -291,7 +291,7 @@ _object_, the callback function settings (only for ajax tabs) that will be trigg
 you can then setup a `errorCallback` for each tab pane this way:
 
 ```js
-$("#tabs-container).tabsX({
+$("#tabs-container").tabsX({
     enableCache: true,
     maxTitleLength: 10,
     errorCallback: {

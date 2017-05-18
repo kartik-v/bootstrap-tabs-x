@@ -5,6 +5,7 @@ Change Log: `bootstrap-tabs-x`
 
 **Date:** 17-May-2017
 
+- Correct code typo in README.
 - Add github contribution and PR templates.
 - Chronological ordering of issues for change log.
 - Update copyright year to current.
