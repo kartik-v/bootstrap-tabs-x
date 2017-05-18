@@ -131,17 +131,20 @@
             });
         },
         initCache: function() {
-            var self = this;
+            var self = this, t = parseFloat(self.cacheTimeout);
+            if (isNaN(t)) {
+                t = 0;
+            }
             self.cache = {
-                timeout: self.cacheTimeout,
                 data: {},
+                create: function() {
+                    return (new Date().getTime());
+                },
                 exist: function (key) {
-                    return !!self.cache.data[key] &&
-                        ((new Date().getTime() - self.cache.data[key]) < self.cache.timeout);
+                    return !!self.cache.data[key] && ((self.cache.create() - self.cache.data[key]) < t);
                 },
                 set: function (key) {
-                    delete self.cache.data[key];
-                    self.cache.data[key] = new Date().getTime();
+                    self.cache.data[key] = self.cache.create();
                 }
             };
         },
