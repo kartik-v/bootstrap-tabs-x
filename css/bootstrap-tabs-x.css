@@ -1,12 +1,14 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2017
- * @version 1.3.3
+ * bootstrap-tabs-x v1.3.3
+ * http://plugins.krajee.com/tabs-x
  *
- * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to tab-align tabs in 
- * multiple ways, add borders, rotated titles, and more.
+ * Krajee default Bootstrap 3.x styling for bootstrap-tabs-x.
  *
- * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
- * For more Yii related demos visit http://demos.krajee.com
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2017, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-tabs-x/blob/master/LICENSE.md
  */
 .tab-align-center .nav-tabs > li, .tab-align-center .nav-pills > li,
 .tab-align-right .nav-tabs > li, .tab-align-right .nav-pills > li {

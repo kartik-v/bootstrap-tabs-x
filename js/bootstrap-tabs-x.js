@@ -1,12 +1,14 @@
 /*!
- * @copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2017
- * @version 1.3.3
+ * bootstrap-tabs-x v1.3.3
+ * http://plugins.krajee.com/tabs-x
  *
- * Bootstrap Tabs Extended - Extended Bootstrap Tabs with ability to align tabs 
- * in multiple ways, add borders, rotated titles, and more.
+ * Krajee jQuery plugin for bootstrap-tabs-x.
  *
- * For more JQuery/Bootstrap plugins and demos visit http://plugins.krajee.com
- * For more Yii related demos visit http://demos.krajee.com
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2017, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD 3-Clause
+ * https://github.com/kartik-v/bootstrap-tabs-x/blob/master/LICENSE.md
  */
 (function (factory) {
     "use strict";
@@ -130,14 +132,14 @@
                 });
             });
         },
-        initCache: function() {
+        initCache: function () {
             var self = this, t = parseFloat(self.cacheTimeout);
             if (isNaN(t)) {
                 t = 0;
             }
             self.cache = {
                 data: {},
-                create: function() {
+                create: function () {
                     return (new Date().getTime());
                 },
                 exist: function (key) {
@@ -148,9 +150,22 @@
                 }
             };
         },
-        flushCache: function () {
+        flushCache: function (tabIds) {
             var self = this;
-            self.cache.data = {};
+            if (typeof tabIds === 'string') {
+                tabIds = [tabIds];
+            }
+            if (typeof tabIds === 'object' && !isEmpty(tabIds)) {
+                Object.values(tabIds).forEach(function (tabId) {
+                    Object.keys(self.cache.data).forEach(function (key) {
+                        if (key.endsWith(tabId)) {
+                            delete self.cache.data[key];
+                        }
+                    });
+                });
+            } else {
+                self.cache.data = {};
+            }
         }
     };
 

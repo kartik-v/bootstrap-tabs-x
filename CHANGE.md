@@ -3,8 +3,10 @@ Change Log: `bootstrap-tabs-x`
 
 ## Version 1.3.3
 
-**Date:** 17-May-2017
+**Date:** 09-Sep-2017
 
+- (enh #28): Enhancements to support Bootstrap v4.x framework.
+- (enh #27): Enhance `flushCache` method to allow flushing cache of specific `tabIds`.
 - (enh #26): Add `initCache` method.
 - Correct code typo in README.
 - Add github contribution and PR templates.
