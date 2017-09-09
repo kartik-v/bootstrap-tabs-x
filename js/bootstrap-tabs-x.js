@@ -148,9 +148,22 @@
                 }
             };
         },
-        flushCache: function () {
+        flushCache: function (tabsIds) {
             var self = this;
-            self.cache.data = {};
+            if (typeof tabsIds === 'string'){
+                tabsIds = [tabsIds];
+            }
+            if (typeof tabsIds === 'object' && tabsIds) {
+                Object.values(tabsIds).forEach(function(tabId){
+                    Object.keys(self.cache.data).forEach(function(key){
+                        if(key.endsWith(tabId)){
+                            delete self.cache.data[key];
+                        }
+                    });
+                });
+            } else {
+                self.cache.data = {};
+            }
         }
     };
 
