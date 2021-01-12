@@ -5,7 +5,7 @@
  * Krajee jQuery plugin for bootstrap-tabs-x.
  *
  * Author: Kartik Visweswaran
- * Copyright: 2014 - 2017, Kartik Visweswaran, Krajee.com
+ * Copyright: 2014 - 2021, Kartik Visweswaran, Krajee.com
  *
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-tabs-x/blob/master/LICENSE.md
