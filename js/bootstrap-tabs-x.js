@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.3
+ * bootstrap-tabs-x v1.3.4
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee jQuery plugin for bootstrap-tabs-x.
@@ -11,29 +11,49 @@
  * https://github.com/kartik-v/bootstrap-tabs-x/blob/master/LICENSE.md
  */
 (function (factory) {
-    "use strict";
-    //noinspection JSUnresolvedVariable
-    if (typeof define === 'function' && define.amd) { // jshint ignore:line
-        define(['jquery'], factory); // jshint ignore:line
-    } else { // noinspection JSUnresolvedVariable
-        if (typeof module === 'object' && module.exports) { // jshint ignore:line
-            // noinspection JSUnresolvedVariable
-            module.exports = factory(require('jquery')); // jshint ignore:line
-        } else {
-            factory(window.jQuery);
-        }
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery', 'window', 'document'], factory);
+    } else if (typeof module === 'object' && typeof module.exports === 'object') {
+        factory(require('jquery'), window, document);
+    } else {
+        factory(window.jQuery, window, document);
     }
-}(function ($) {
+}(function ($, window, document, undefined) {
     "use strict";
-    var isEmpty = function (value, trim) {
+
+    if (!$.fn.tabsXBsVersion) {
+        $.fn.tabsXBsVersion = (window.Tab && window.Tab.VERSION) ||
+            (window.bootstrap && window.bootstrap.Tab && bootstrap.Tab.VERSION) || '3.x.x';
+    }
+
+    var $h, TabsX;
+
+    // Global helper object
+    $h = {
+        isEmpty: function (value, trim) {
             return value === null || value === undefined || value.length === 0 || (trim && $.trim(value) === '');
         },
-        TabsX = function (element, options) {
-            var self = this;
-            self.$element = $(element);
-            self.init(options);
-            self.listen();
-        };
+        isBs: function (ver) {
+            var chk = $.trim(($.fn.tabsXBsVersion || '') + '');
+            ver = parseInt(ver, 10);
+            if (!chk) {
+                return ver === 4;
+            }
+            return ver === parseInt(chk.charAt(0), 10);
+
+        },
+        getDataAttr: function (prop) {
+            return 'data-' + ($h.isBs(5) ? 'bs-' : '') + prop;
+        }
+    };
+    // Main TabsX plugin function
+    TabsX = function (element, options) {
+        var self = this;
+        self.$element = $(element);
+        self.init(options);
+        self.listen();
+    };
 
     //noinspection JSUnusedGlobalSymbols
     TabsX.prototype = {
@@ -45,7 +65,7 @@
             });
             self.initCache();
             self.enableCache = !!self.enableCache;
-            if (!isEmpty(self.addCss) && !$el.hasClass(self.addCss)) {
+            if (!$h.isEmpty(self.addCss) && !$el.hasClass(self.addCss)) {
                 $el.addClass(self.addCss);
             }
             self.$pane = $el.find('.tab-pane.active');
@@ -53,28 +73,38 @@
             self.$tabs = $el.find('.nav-tabs');
             self.isVertical = ($el.hasClass('tabs-left') || $el.hasClass('tabs-right'));
             self.isVerticalSide = self.isVertical && $el.hasClass('tab-sideways');
+            self.initVertical();
+        },
+        initVertical: function () {
+            var self = this;
             if (self.isVertical) {
                 self.$content.css('min-height', self.$tabs.outerHeight() + 1 + 'px');
             }
         },
         setTitle: function ($el) {
             var self = this, txt = $.trim($el.text()), isVertical = self.isVertical,
-                maxLen = isEmpty($el.data('maxTitleLength')) ? self.maxTitleLength : $el.data('maxTitleLength');
-            if (isVertical && txt.length > maxLen - 2 && isEmpty($el.attr('title'))) {
+                maxLen = $h.isEmpty($el.data('maxTitleLength')) ? self.maxTitleLength : $el.data('maxTitleLength');
+            if (isVertical && txt.length > maxLen - 2 && $h.isEmpty($el.attr('title'))) {
                 $el.attr('title', txt);
             }
         },
         listen: function () {
-            var self = this, $element = self.$element;
+            var self = this, $element = self.$element, dataVar = $h.getDataAttr('toggle');
+            console.log('KV SAYS', dataVar);
             $element.find('.nav-tabs li.disabled').each(function () {
-                $(this).find('[data-toggle="tab"]').removeAttr('data-toggle');
+                $(this).find('[' + dataVar + '="tab"]').removeAttr(dataVar);
             });
-            $element.find('.nav-tabs li [data-toggle="dropdown"]').each(function () {
+            $element.find('.nav-tabs li [' + dataVar + '="dropdown"]').each(function () {
                 self.setTitle($(this));
             });
-            $element.find('.nav-tabs li [data-toggle="tab"]').each(function () {
+            $element.find('.nav-tabs li').on('click', function () {
+                setTimeout(function () {
+                    self.initVertical();
+                }, 1000);
+            });
+            $element.find('.nav-tabs li [' + dataVar + '="tab"]').each(function () {
                 var $el = $(this), $item = $el.closest('li');
-                $item.removeAttr('data-toggle');
+                $item.removeAttr(dataVar);
                 self.setTitle($el);
                 $el.on('click', function (e) {
                     if ($item.hasClass('disabled')) {
@@ -82,7 +112,7 @@
                         return;
                     }
                     var vUrl = $(this).attr("data-url"), vHash = this.hash, cacheKey = vUrl + vHash, settings;
-                    if (isEmpty(vUrl) || (self.enableCache && self.cache.exist(cacheKey))) {
+                    if ($h.isEmpty(vUrl) || (self.enableCache && self.cache.exist(cacheKey))) {
                         $el.trigger('tabsX:click');
                         return;
                     }
@@ -92,7 +122,7 @@
                         $element = $pane.closest('.dropdown'),
                         cbSuccess = self.successCallback[vHash] || null,
                         cbError = self.errorCallback[vHash] || null;
-                    if (!isEmpty($element.attr('class'))) {
+                    if (!$h.isEmpty($element.attr('class'))) {
                         $paneHeader = $element.find('.dropdown-toggle');
                     }
                     settings = $.extend(true, {}, {
@@ -155,7 +185,7 @@
             if (typeof tabIds === 'string') {
                 tabIds = [tabIds];
             }
-            if (typeof tabIds === 'object' && !isEmpty(tabIds)) {
+            if (typeof tabIds === 'object' && !$h.isEmpty(tabIds)) {
                 Object.values(tabIds).forEach(function (tabId) {
                     Object.keys(self.cache.data).forEach(function (key) {
                         if (key.endsWith(tabId)) {
@@ -204,7 +234,7 @@
 
     $.fn.tabsX.Constructor = TabsX;
 
-    $(document).on('ready', function () {
+    $(document).ready(function () {
         $('.tabs-x').tabsX({});
     });
 }));

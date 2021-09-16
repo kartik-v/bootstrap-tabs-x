@@ -1,6 +1,12 @@
 Change Log: `bootstrap-tabs-x`
 ==============================
 
+## Version 1.3.4
+
+**Date:** 16-Sep-2021
+
+- (enh #35): Enhancements to support Bootstrap v5.x framework.
+
 ## Version 1.3.3
 
 **Date:** 12-Jan-2021
