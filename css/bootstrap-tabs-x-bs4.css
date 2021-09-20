@@ -32,6 +32,7 @@
 }
 
 .tabs-x .nav-link.disabled {
+    pointer-events: auto;
     cursor: not-allowed;
 }
 
@@ -79,6 +80,7 @@
 
 .tabs-left > .nav-tabs .nav-item > .nav-link {
     border-radius: 0.25rem 0 0 0.25rem;
+    white-space: nowrap;
 }
 
 .tabs-left > .nav-tabs .nav-item > .nav-link.active {
@@ -87,6 +89,7 @@
 
 .tabs-right > .nav-tabs .nav-item > .nav-link {
     border-radius: 0 0.25rem 0.25rem 0;
+    white-space: nowrap;
 }
 
 .tabs-right > .nav-tabs .nav-link.active {

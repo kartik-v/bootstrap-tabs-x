@@ -3,8 +3,9 @@ Change Log: `bootstrap-tabs-x`
 
 ## Version 1.3.4
 
-**Date:** 16-Sep-2021
+**Date:** 20-Sep-2021
 
+- Simplify NPM module handling.
 - (enh #35): Enhancements to support Bootstrap v5.x framework.
 
 ## Version 1.3.3
