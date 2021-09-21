@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.5
+ * bootstrap-tabs-x v1.3.6
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee default Bootstrap 3.x styling for bootstrap-tabs-x.
@@ -210,7 +210,7 @@
     border-radius: 4px 0 0 4px;
 }
 
-.kv-tab-loading {
+.tabs-x .nav-tabs .kv-tab-loading {
     background-image: url('../img/loading.gif');
     background-position: right 2px center;
     background-repeat: no-repeat;

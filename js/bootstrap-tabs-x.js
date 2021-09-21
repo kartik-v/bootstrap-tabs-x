@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.5
+ * bootstrap-tabs-x v1.3.6
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee jQuery plugin for bootstrap-tabs-x.
@@ -23,8 +23,8 @@
     "use strict";
 
     if (!$.fn.tabsXBsVersion) {
-        $.fn.tabsXBsVersion = (window.Tab && window.Tab.VERSION) ||
-            (window.bootstrap && window.bootstrap.Tab && bootstrap.Tab.VERSION) || '3.x.x';
+        $.fn.tabsXBsVersion = (window.bootstrap && window.bootstrap.Tab && bootstrap.Tab.VERSION) ||
+            (window.Tab && window.Tab.VERSION) || '3.x.x';
     }
 
     var $h, TabsX;

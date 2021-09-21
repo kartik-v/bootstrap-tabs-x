@@ -1,6 +1,12 @@
 Change Log: `bootstrap-tabs-x`
 ==============================
 
+## Version 1.3.6
+
+**Date:** _under development_
+
+- (enh #37): Correct tab loading style.
+
 ## Version 1.3.5
 
 **Date:** 21-Sep-2021

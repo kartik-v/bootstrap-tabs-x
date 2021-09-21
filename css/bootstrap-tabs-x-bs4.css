@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.5
+ * bootstrap-tabs-x v1.3.6
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee default Bootstrap 5.x and 4.x styling for bootstrap-tabs-x.
@@ -10,15 +10,6 @@
  * Licensed under the BSD 3-Clause
  * https://github.com/kartik-v/bootstrap-tabs-x/blob/master/LICENSE.md
  */
-.kv-tab-loading {
-    background-image: url('../img/loading.gif');
-    background-position: right 0.125rem center;
-    background-repeat: no-repeat;
-    z-index: 15000;
-    cursor: wait;
-    opacity: 0.6;
-}
-
 .tab-content {
     padding: 0.625rem;
 }
@@ -56,6 +47,7 @@
 
 .tabs-left .tab-content, .tabs-right .tab-content {
     height: 100%;
+    width: 100%;
     border: none;
 }
 
@@ -71,6 +63,7 @@
 
 .tabs-left > .nav-tabs, .tabs-right > .nav-tabs {
     border-bottom: none;
+    width: 9rem;
 }
 
 .tabs-left > .nav-tabs .nav-item, .tabs-right > .nav-tabs .nav-item {
@@ -227,4 +220,13 @@
 .tabs-right.tab-sideways .nav-link.dropdown-toggle:after,
 .tabs-right.tab-sideways .nav-link .nav-link-text {
     transform: translateX(-90%) translateY(0%) rotate(90deg);
+}
+
+.tabs-x .nav-tabs .nav-link.kv-tab-loading {
+    background-image: url('../img/loading.gif');
+    background-position: right 0.125rem center;
+    background-repeat: no-repeat;
+    z-index: 15000;
+    cursor: wait;
+    opacity: 0.6;
 }
