@@ -97,9 +97,8 @@
 }
 
 .tabs-left > .nav-tabs .nav-item .nav-link :before, .tabs-right > .nav-tabs .nav-item .nav-link :before {
-    position: absolute;
+    position: relative;
     height: 100%;
-    content: " ";
     width: 1px;
     border-color: rgba(0,0,0,.15) #fff;
 }
