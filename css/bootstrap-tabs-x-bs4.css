@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.4
+ * bootstrap-tabs-x v1.3.5
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee default Bootstrap 5.x and 4.x styling for bootstrap-tabs-x.
@@ -94,22 +94,6 @@
 
 .tabs-right > .nav-tabs .nav-link.active {
     border-color: rgba(0,0,0,.15) rgba(0,0,0,.15) rgba(0,0,0,.15) #fff;
-}
-
-.tabs-left > .nav-tabs .nav-item .nav-link :before, .tabs-right > .nav-tabs .nav-item .nav-link :before {
-    position: absolute;
-    height: 100%;
-    content: " ";
-    width: 1px;
-    border-color: rgba(0,0,0,.15) #fff;
-}
-
-.tabs-left > .nav-tabs .nav-item .nav-link :before {
-    right: 0;
-}
-
-.tabs-right > .nav-tabs .nav-item .nav-link :before {
-    left: 0;
 }
 
 /**

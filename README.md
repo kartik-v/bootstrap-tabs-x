@@ -80,19 +80,19 @@ You must first load the following assets in your header.
 
 ```html
 <!-- bootstrap 5.x or 4.x or 3.x is supported  -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" crossorigin="anonymous">
 <!-- if using with bootstrap 5.x and 4.x include bootstrap-tabs-x-bs4.css style.
      If using with bootstrap 3.x include bootstrap-tabs-x.css -->
-<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.4/css/bootstrap-tabs-x-bs4.min.css" media="all" rel="stylesheet" type="text/css" /&gt;
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.5/css/bootstrap-tabs-x-bs4.min.css" media="all" rel="stylesheet" type="text/css" /&gt;
 <!-- alternatively if using with bootstrap 3.x uncomment below and comment out (exclude /bootstrap-tabs-x-bs4.css) -->
-<!-- link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.4/css/bootstrap-tabs-x.css" media="all" rel="stylesheet" type="text/css" / -->
+<!-- link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.5/css/bootstrap-tabs-x.css" media="all" rel="stylesheet" type="text/css" / -->
 <!-- jquery JS library -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- bootstrap.bundle.min.js below is needed if you wish to zoom and preview file content in a detail modal
     dialog. bootstrap 5.x or 4.x is supported. You can also use the bootstrap js 3.3.x versions. -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <!-- bootstrap-tabs-x JS library -->
-<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.4/js/bootstrap-tabs-x.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-tabs-x@1.3.5/js/bootstrap-tabs-x.min.js" type="text/javascript"></script>
 ```
 
 If you noticed, you need to load the `bootstrap.min.css`, `jquery.min.js`, and `bootstrap.min.js` in addition to the `bootstrap-tabs-x.css` and `bootstrap-tabs-x.js` for

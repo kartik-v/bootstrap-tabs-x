@@ -1,5 +1,5 @@
 /*!
- * bootstrap-tabs-x v1.3.4
+ * bootstrap-tabs-x v1.3.5
  * http://plugins.krajee.com/tabs-x
  *
  * Krajee jQuery plugin for bootstrap-tabs-x.
