@@ -127,7 +127,6 @@
                     }
                     settings = $.extend(true, {}, {
                         type: 'post',
-                        dataType: 'json',
                         url: vUrl,
                         beforeSend: function (jqXHR, settings) {
                             $tab.html('<br><br><br>');
